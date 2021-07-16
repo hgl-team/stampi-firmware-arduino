@@ -1,0 +1,6 @@
+{
+    "arduino.path": "/home/leonardo/develop/ide/arduino-1.8.13",
+    "arduino.commandPath": "arduino",
+    "arduino.logLevel": "info",
+    "arduino.enableUSBDetection": true
+}

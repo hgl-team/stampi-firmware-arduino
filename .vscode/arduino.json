@@ -1,0 +1,7 @@
+{
+    "configuration": "cpu=atmega2560",
+    "sketch": "stampi-firmware.ino",
+    "output": "./bin",
+    "programmer": "arduino:avrisp",
+    "board": "arduino:avr:mega"
+}

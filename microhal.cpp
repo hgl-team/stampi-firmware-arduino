@@ -1,4 +1,4 @@
-#include "../include/microhal.h"
+#include "include/microhal.h"
 #include <Arduino.h>
 
 bool hal_digital_read(const int & pin) {

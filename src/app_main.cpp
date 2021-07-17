@@ -44,33 +44,39 @@ namespace stampi {
             &S0_stampi, 
             &P_toggle_stop, 
             &S0_hold, 
-            &R0_stampi
+            &R0_hold
+        };
+
+        AppMainEventListener app_main_event_listener;
+        sfc::EventListener * app_main_event_listeners[] = {
+            &app_main_event_listener
         };
         
         sfc::Application app_main = sfc::Application({ 
-            { steps, 6 }, 
-            { actions, 5 },
-            { transitions, 10 }
+            { steps, APP_MAIN_STEP_COUNT }, 
+            { actions, APP_MAIN_ACTION_COUNT },
+            { transitions, APP_MAIN_TRANSITION_COUNT }
         });
 
         // Implementation
         void setup_app_main() {
+            app_main.setListeners({ app_main_event_listeners, 1 });
         }
 
         bool transition_0() {
-            return stampi::stop && (stampi::injector::app_injector.getState()->active);
+            return stampi::stop && (S0_stampi.getState()->active);
         }
         bool transition_1() {
-            return !stampi::stop && !(stampi::injector::app_injector.getState()->active);
+            return !stampi::stop && !(S0_stampi.getState()->active);
         }
         bool transition_2() {
-            return stampi::stop ^ (stampi::injector::app_injector.getState()->active);
+            return stampi::stop ^ (S0_stampi.getState()->active);
         }
         bool transition_3() {
-            return !(stampi::injector::app_injector.getState()->active);
+            return !(S0_stampi.getState()->active);
         }
         bool transition_4() {
-            return stampi::injector::app_injector.getState()->active;
+            return S0_stampi.getState()->active;
         }
         bool transition_5() {
             return hal_digital_read(IN_START) && !S0_hold.getState()->active;
@@ -102,6 +108,19 @@ namespace stampi {
         }
         void R0_hold_activating_handler(const sfc::stateful_state_t &state) {
             S0_hold.shutdown();
+        }
+
+        AppMainEventListener::AppMainEventListener() { }
+        
+        AppMainEventListener::~AppMainEventListener() { }
+
+        void AppMainEventListener::onActivationChanged(const sfc::stateful_state_t &state) {
+            if(ACTIVATING(state) || DEACTIVATING(state)) {
+                if(DEACTIVATING(state)) {
+                    app_main.clear();
+                }
+                stampi::stop = true;    // machine is stopped at startup.
+            }
         }
     }
 }

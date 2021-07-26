@@ -13,7 +13,7 @@
 
 #define APP_SAUTO_STEP_COUNT        10
 #define APP_SAUTO_TRANSITION_COUNT  11
-#define APP_SAUTO_ACTION_COUNT      19
+#define APP_SAUTO_ACTION_COUNT      20
 
 namespace stampi {
     namespace sauto {
@@ -57,6 +57,8 @@ namespace stampi {
 
         // 09C
         extern sfc::NonStoredAction R0_mold_close;
+
+        void setup_app_sauto();
         
         bool transition_0();
         bool transition_1();
@@ -110,6 +112,7 @@ namespace stampi {
         HANDLER_DEACTIVATING(N_mold_open, state);
 
         // 08C
+        HANDLER_ACTIVATING(N_piece_count_increase, state);
         HANDLER_ACTIVATING(N_timer_auto_delay, state);
 
         // 09C

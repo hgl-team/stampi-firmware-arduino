@@ -17,7 +17,10 @@
             "includePath": [
                 "/home/leonardo/develop/ide/arduino-1.8.13/hardware/arduino/avr/cores/arduino",
                 "/home/leonardo/develop/ide/arduino-1.8.13/hardware/arduino/avr/variants/mega",
+                "/home/leonardo/Arduino/libraries/umodbus/src",
+                "/home/leonardo/develop/ide/arduino-1.8.13/libraries/Ethernet/src",
                 "/home/leonardo/Arduino/libraries/microsfc",
+                "/home/leonardo/develop/ide/arduino-1.8.13/hardware/arduino/avr/libraries/SPI/src",
                 "/home/leonardo/develop/ide/arduino-1.8.13/hardware/tools/avr/lib/gcc/avr/7.3.0/include",
                 "/home/leonardo/develop/ide/arduino-1.8.13/hardware/tools/avr/lib/gcc/avr/7.3.0/include-fixed",
                 "/home/leonardo/develop/ide/arduino-1.8.13/hardware/tools/avr/avr/include"

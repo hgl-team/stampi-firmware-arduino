@@ -46,6 +46,8 @@ namespace stampi {
         extern sfc::NonStoredAction N_carrier_move_r;
         extern sfc::NonStoredAction N_mold_close_2;
 
+        void setup_app_manual();
+
         bool transition_0();
         bool transition_1();
         bool transition_2();

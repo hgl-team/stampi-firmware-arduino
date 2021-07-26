@@ -135,6 +135,10 @@ namespace stampi {
             { transitions, APP_MANUAL_TRANSITION_COUNT }
         });
 
+        void setup_app_manual() {
+            
+        }
+
         bool transition_0() { 
             return !hal_digital_read(IN_ES2) && hal_digital_read(IN_BTN_MC)
                 && hal_digital_read(IN_DOOR);

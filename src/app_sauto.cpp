@@ -104,9 +104,13 @@ namespace stampi {
 
         // 08C
         sfc::StoredAction S0_skip_auto_call = sfc::StoredAction(8);
+        sfc::NonStoredAction N_piece_count_increase  =sfc::NonStoredAction(8, HANDLER_ARRAY(1,
+              ACTION_HANDLER_DEF(ACTION_STATE_ACTIVATING, HANDLER_ACTIVATING_REF(N_piece_count_increase))
+        ));
         sfc::NonStoredAction N_timer_auto_delay = sfc::NonStoredAction(8, HANDLER_ARRAY(1,
               ACTION_HANDLER_DEF(ACTION_STATE_ACTIVATING, HANDLER_ACTIVATING_REF(N_timer_auto_delay))
         ));
+        
 
         // 09C
         sfc::NonStoredAction R0_mold_close = sfc::NonStoredAction(9, HANDLER_ARRAY(1,
@@ -139,6 +143,7 @@ namespace stampi {
             , &N_mold_soft_move_1
             // 08C
             , &S0_skip_auto_call
+            , &N_piece_count_increase
             , &N_timer_auto_delay
             // 09C
             , &R0_mold_close
@@ -149,6 +154,10 @@ namespace stampi {
             , { actions, APP_SAUTO_ACTION_COUNT }
             , { transitions, APP_SAUTO_TRANSITION_COUNT }
         });
+
+        void setup_app_sauto() {
+          
+        }
         
         bool transition_0() { 
           bool in_es1     = hal_digital_read(IN_ES1);
@@ -239,6 +248,7 @@ namespace stampi {
         HANDLER_ACTIVATING(N_mold_open, state) { hal_digital_write(OUT_MOLD_OPEN, true); }
         HANDLER_DEACTIVATING(N_mold_open, state) { hal_digital_write(OUT_MOLD_OPEN, false); }
 
+        HANDLER_ACTIVATING(N_piece_count_increase, state) { stampi::piece_count++; }
         HANDLER_ACTIVATING(N_timer_auto_delay, state) { timers[2].reset(); timers[2].enable(); }
     }
 }

@@ -5,7 +5,6 @@
 #include <Application.h>
 #include <Timer.h>
 #include <Clock.h>
-#include <umodbus.h>
 
 #define TIMER_COUNT                     3
 #define CLOCK_EVENT_LISTENER_COUNT      7

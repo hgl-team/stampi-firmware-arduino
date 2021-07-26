@@ -8,8 +8,6 @@
 #define MODBUS_REGISTER(address, type, pointer) { address, type, pointer }
 
 namespace stampi {
-    uint8_t mac_address[] = { 123, 245, 6, 21, 107, 4 };
-
     namespace comm {
         umodbus::register_t registers[] = {
               MODBUS_REGISTER(0,  UMODBUS_TYPE_COIL,              UMODBUS_U16_PTROF(stampi::stop))

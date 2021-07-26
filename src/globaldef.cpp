@@ -8,6 +8,7 @@
 namespace stampi {
     uint16_t stop = 0;
     uint32_t piece_count = 0;
+    uint8_t mac_address[] = { 123, 245, 6, 21, 107, 4 };
 
     sfc::Timer timers[] = {
         // app_sauto
